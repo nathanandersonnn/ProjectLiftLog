@@ -22,6 +22,7 @@ CREATE TABLE Users (
     username varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     PRIMARY KEY (userID),
+    UNIQUE (username),
     UNIQUE (email)
 );
 
@@ -39,7 +40,7 @@ CREATE TABLE Exercises (
 CREATE TABLE Workouts (
     workoutID INT AUTO_INCREMENT NOT NULL,
     userID INT NOT NULL,
-    workoutDate datetime NULL,
+    workoutDate datetime NOT NULL,
     notes varchar(255) NULL,
     PRIMARY KEY (workoutID),
     FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -56,7 +57,7 @@ CREATE TABLE WorkoutExercises (
     durationSeconds INT NULL,
     PRIMARY KEY (workoutExerciseID),
     FOREIGN KEY (exerciseID) REFERENCES Exercises(exerciseID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (workoutID) REFERENCES Workouts(workoutID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
