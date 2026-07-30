@@ -22,7 +22,7 @@ CS340 project by Nathan Anderson and Logan Jordan (The Query Crew).
    DB_NAME=cs340_your_onid
    ```
 
-4. Import the provided `DDL.sql` and `DML.sql` files into your OSU database before running the app.
+4. Import `DDL.sql` into your OSU database before running the app.
 
 ## Running in development
 
