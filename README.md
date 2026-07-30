@@ -32,15 +32,6 @@ Use this while you're actively building and testing changes.
 npm run development
 ```
 
-This runs `app.js` through Nodemon, which restarts the server automatically whenever you save a file.
-
-View the app at:
-```
-http://classwork.engr.oregonstate.edu:63360
-```
-
-Stop the server with `Ctrl+C`. Development mode stops running once you log out of the Classwork SSH session.
-
 ## Running in production
 
 Use this only when you're ready to submit for grading or peer review, since the server keeps running after you log out.
@@ -51,7 +42,6 @@ Use this only when you're ready to submit for grading or peer review, since the 
    ```
    npm run production
    ```
-   This uses Forever to keep `app.js` running in the background.
 
 3. View the app at the same URL:
    ```
