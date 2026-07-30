@@ -1,0 +1,81 @@
+{{!--
+    Module is adapted from:
+    Exploration - Web Application Technology Node.js starter code
+--}}
+
+<h1>Exercises</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>exerciseID</th>
+            <th>name</th>
+            <th>muscleGroup</th>
+            <th>equipment</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each exercises}}
+        <tr>
+            <td>{{this.exerciseID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.muscleGroup}}</td>
+            <td>{{this.equipment}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_exercise_form'>
+                <input type='hidden' name='delete_exercise_id' value='{{this.exerciseID}}' />
+                <input type='hidden' name='delete_exercise_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create an Exercise</h2>
+<form class='cuForm' id='create_exercise_form'>
+    <label for='create_exercise_name'>Name: </label>
+    <input type='text' name='create_exercise_name' id='create_exercise_name' required />
+
+    <label for='create_exercise_muscleGroup'>Muscle Group: </label>
+    <input type='text' name='create_exercise_muscleGroup' id='create_exercise_muscleGroup' />
+
+    <label for='create_exercise_equipment'>Equipment: </label>
+    <input type='text' name='create_exercise_equipment' id='create_exercise_equipment' />
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update an Exercise</h2>
+<form class='cuForm' id='update_exercise_form'>
+    <label for='update_exercise_id'>Exercise to Update: </label>
+    <select name='update_exercise_id' id='update_exercise_id' required>
+        <option value='' disabled selected>Select an Exercise</option>
+        {{#each exercises}}
+        <option value='{{this.exerciseID}}'>
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_exercise_name'>Name: </label>
+    <input type='text' name='update_exercise_name' id='update_exercise_name' />
+
+    <label for='update_exercise_muscleGroup'>Muscle Group: </label>
+    <input type='text' name='update_exercise_muscleGroup' id='update_exercise_muscleGroup' />
+
+    <label for='update_exercise_equipment'>Equipment: </label>
+    <input type='text' name='update_exercise_equipment' id='update_exercise_equipment' />
+
+    <input type='submit' />
+</form>

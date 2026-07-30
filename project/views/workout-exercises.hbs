@@ -1,0 +1,119 @@
+{{!--
+    Module is adapted from:
+    Exploration - Web Application Technology Node.js starter code
+--}}
+
+<h1>Workout Exercises</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        <tr>
+            <th>workoutExerciseID</th>
+            <th>exercise</th>
+            <th>workoutID</th>
+            <th>repCount</th>
+            <th>weight</th>
+            <th>durationSeconds</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each workoutExercises}}
+        <tr>
+            <td>{{this.workoutExerciseID}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.workoutID}}</td>
+            <td>{{this.repCount}}</td>
+            <td>{{this.weight}}</td>
+            <td>{{this.durationSeconds}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_workoutExercise_form'>
+                <input type='hidden' name='delete_workoutExercise_id' value='{{this.workoutExerciseID}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Log an Exercise for a Workout</h2>
+<form class='cuForm' id='create_workoutExercise_form'>
+    <label for='create_workoutExercise_workoutID'>Workout: </label>
+    <select name='create_workoutExercise_workoutID' id='create_workoutExercise_workoutID' required>
+        <option value='' disabled selected>Select a Workout</option>
+        {{#each workouts}}
+        <option value='{{this.workoutID}}'>{{this.workoutID}} - {{this.workoutDate}}</option>
+        {{/each}}
+    </select>
+
+    <label for='create_workoutExercise_exerciseID'>Exercise: </label>
+    <select name='create_workoutExercise_exerciseID' id='create_workoutExercise_exerciseID' required>
+        <option value='' disabled selected>Select an Exercise</option>
+        {{#each exercises}}
+        <option value='{{this.exerciseID}}'>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for='create_workoutExercise_repCount'>Reps: </label>
+    <input type='number' name='create_workoutExercise_repCount' id='create_workoutExercise_repCount' min='0' />
+
+    <label for='create_workoutExercise_weight'>Weight: </label>
+    <input type='number' step='0.01' name='create_workoutExercise_weight' id='create_workoutExercise_weight' min='0' />
+
+    <label for='create_workoutExercise_durationSeconds'>Duration (seconds): </label>
+    <input type='number' name='create_workoutExercise_durationSeconds' id='create_workoutExercise_durationSeconds' min='0' />
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Logged Exercise</h2>
+<form class='cuForm' id='update_workoutExercise_form'>
+    <label for='update_workoutExercise_id'>Logged Exercise to Update: </label>
+    <select name='update_workoutExercise_id' id='update_workoutExercise_id' required>
+        <option value='' disabled selected>Select an Entry</option>
+        {{#each workoutExercises}}
+        <option value='{{this.workoutExerciseID}}'>
+            {{this.workoutExerciseID}}
+            -
+            {{this.name}}
+            (workout {{this.workoutID}})
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_workoutExercise_workoutID'>Workout: </label>
+    <select name='update_workoutExercise_workoutID' id='update_workoutExercise_workoutID'>
+        <option value='' disabled selected>Select a Workout</option>
+        {{#each workouts}}
+        <option value='{{this.workoutID}}'>{{this.workoutID}} - {{this.workoutDate}}</option>
+        {{/each}}
+    </select>
+
+    <label for='update_workoutExercise_exerciseID'>Exercise: </label>
+    <select name='update_workoutExercise_exerciseID' id='update_workoutExercise_exerciseID'>
+        <option value='' disabled selected>Select an Exercise</option>
+        {{#each exercises}}
+        <option value='{{this.exerciseID}}'>{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    <label for='update_workoutExercise_repCount'>Reps: </label>
+    <input type='number' name='update_workoutExercise_repCount' id='update_workoutExercise_repCount' min='0' />
+
+    <label for='update_workoutExercise_weight'>Weight: </label>
+    <input type='number' step='0.01' name='update_workoutExercise_weight' id='update_workoutExercise_weight' min='0' />
+
+    <label for='update_workoutExercise_durationSeconds'>Duration (seconds): </label>
+    <input type='number' name='update_workoutExercise_durationSeconds' id='update_workoutExercise_durationSeconds' min='0' />
+
+    <input type='submit' />
+</form>
