@@ -32,21 +32,21 @@
             <td>{{this.name}}</td>
 
             {{! DELETE form }}
-            <form id='delete_goal_form'>
+            {{!-- <form id='delete_goal_form'>
                 <input type='hidden' name='delete_goal_id' value='{{this.goalID}}' />
                 <td>
                     <button type='submit'>
                         Delete
                     </button>
                 </td>
-            </form>
+            </form> --}}
         </tr>
         {{/each}}
     </tbody>
 </table>
 
 {{! CREATE form }}
-<h2>Create a Goal</h2>
+{{!-- <h2>Create a Goal</h2>
 <form class='cuForm' id='create_goal_form'>
     <label for='create_goal_userID'>User: </label>
     <select name='create_goal_userID' id='create_goal_userID' required>
@@ -74,10 +74,10 @@
     <input type='datetime-local' name='create_goal_createdDate' id='create_goal_createdDate' required />
 
     <input type='submit' />
-</form>
+</form> --}}
 
 {{! UPDATE form }}
-<h2>Update a Goal</h2>
+{{!-- <h2>Update a Goal</h2>
 <form class='cuForm' id='update_goal_form'>
     <label for='update_goal_id'>Goal to Update: </label>
     <select name='update_goal_id' id='update_goal_id' required>
@@ -120,4 +120,4 @@
     <input type='datetime-local' name='update_goal_completedDate' id='update_goal_completedDate' />
 
     <input type='submit' />
-</form>
+</form> --}}

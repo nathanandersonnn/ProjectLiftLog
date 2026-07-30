@@ -26,21 +26,21 @@
             <td>{{this.notes}}</td>
 
             {{! DELETE form }}
-            <form id='delete_workout_form'>
+            {{!-- <form id='delete_workout_form'>
                 <input type='hidden' name='delete_workout_id' value='{{this.workoutID}}' />
                 <td>
                     <button type='submit'>
                         Delete
                     </button>
                 </td>
-            </form>
+            </form> --}}
         </tr>
         {{/each}}
     </tbody>
 </table>
 
 {{! CREATE form }}
-<h2>Create a Workout</h2>
+{{!-- <h2>Create a Workout</h2>
 <form class='cuForm' id='create_workout_form'>
     <label for='create_workout_userID'>User: </label>
     <select name='create_workout_userID' id='create_workout_userID' required>
@@ -57,10 +57,10 @@
     <input type='text' name='create_workout_notes' id='create_workout_notes' maxlength='255' />
 
     <input type='submit' />
-</form>
+</form> --}}
 
 {{! UPDATE form }}
-<h2>Update a Workout</h2>
+{{!-- <h2>Update a Workout</h2>
 <form class='cuForm' id='update_workout_form'>
     <label for='update_workout_id'>Workout to Update: </label>
     <select name='update_workout_id' id='update_workout_id' required>
@@ -91,4 +91,4 @@
     <input type='text' name='update_workout_notes' id='update_workout_notes' maxlength='255' />
 
     <input type='submit' />
-</form>
+</form> --}}

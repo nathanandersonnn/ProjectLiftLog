@@ -26,7 +26,7 @@
             <td>{{this.equipment}}</td>
 
             {{! DELETE form }}
-            <form id='delete_exercise_form'>
+            {{!-- <form id='delete_exercise_form'>
                 <input type='hidden' name='delete_exercise_id' value='{{this.exerciseID}}' />
                 <input type='hidden' name='delete_exercise_name' value='{{this.name}}' />
                 <td>
@@ -34,14 +34,14 @@
                         Delete
                     </button>
                 </td>
-            </form>
+            </form> --}}
         </tr>
         {{/each}}
     </tbody>
 </table>
 
 {{! CREATE form }}
-<h2>Create an Exercise</h2>
+{{!-- <h2>Create an Exercise</h2>
 <form class='cuForm' id='create_exercise_form'>
     <label for='create_exercise_name'>Name: </label>
     <input type='text' name='create_exercise_name' id='create_exercise_name' required />
@@ -53,10 +53,10 @@
     <input type='text' name='create_exercise_equipment' id='create_exercise_equipment' />
 
     <input type='submit' />
-</form>
+</form> --}}
 
 {{! UPDATE form }}
-<h2>Update an Exercise</h2>
+{{!-- <h2>Update an Exercise</h2>
 <form class='cuForm' id='update_exercise_form'>
     <label for='update_exercise_id'>Exercise to Update: </label>
     <select name='update_exercise_id' id='update_exercise_id' required>
@@ -78,4 +78,4 @@
     <input type='text' name='update_exercise_equipment' id='update_exercise_equipment' />
 
     <input type='submit' />
-</form>
+</form> --}}
