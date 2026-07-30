@@ -3,6 +3,17 @@
     Exploration - Web Application Technology Node.js starter code
 */
 
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 h1, h2 { 
     margin-left: 16px;
 }
