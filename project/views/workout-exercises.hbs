@@ -30,7 +30,7 @@
             <td>{{this.durationSeconds}}</td>
 
             {{! DELETE form }}
-            {{!-- <form id='delete_workoutExercise_form'>
+            <form id='delete_workoutExercise_form'>
                 <input type='hidden' name='delete_workoutExercise_id' value='{{this.workoutExerciseID}}' />
                 <td>
                     <button type='submit'>
@@ -44,7 +44,7 @@
 </table>
 
 {{! CREATE form }}
-{{!-- <h2>Log an Exercise for a Workout</h2>
+<h2>Log an Exercise for a Workout</h2>
 <form class='cuForm' id='create_workoutExercise_form'>
     <label for='create_workoutExercise_workoutID'>Workout: </label>
     <select name='create_workoutExercise_workoutID' id='create_workoutExercise_workoutID' required>
@@ -72,10 +72,10 @@
     <input type='number' name='create_workoutExercise_durationSeconds' id='create_workoutExercise_durationSeconds' min='0' />
 
     <input type='submit' />
-</form> --}}
+</form>
 
 {{! UPDATE form }}
-{{!-- <h2>Update a Logged Exercise</h2>
+<h2>Update a Logged Exercise</h2>
 <form class='cuForm' id='update_workoutExercise_form'>
     <label for='update_workoutExercise_id'>Logged Exercise to Update: </label>
     <select name='update_workoutExercise_id' id='update_workoutExercise_id' required>
@@ -116,4 +116,4 @@
     <input type='number' name='update_workoutExercise_durationSeconds' id='update_workoutExercise_durationSeconds' min='0' />
 
     <input type='submit' />
-</form> --}}
+</form>
