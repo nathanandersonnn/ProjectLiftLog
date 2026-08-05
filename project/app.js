@@ -154,6 +154,18 @@ app.get('/goals', async function (req, res) {
     }
 });
 
+// RESET ROUTE
+
+app.get('/reset', async function (req, res) {
+    try {
+        await db.query('CALL sp_load_liftlog();');
+        res.redirect('/');
+    } catch(error){
+        console.error('Error on reset:', error);
+        res.status(500).send('An error occurred while resetting the database.');
+    }
+})
+
 // ######## LISTENER ########
 
 app.listen(PORT, function () {
