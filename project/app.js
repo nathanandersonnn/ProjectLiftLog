@@ -154,6 +154,19 @@ app.get('/goals', async function (req, res) {
     }
 });
 
+// PL/SQL DEMO ROUTE
+
+app.get('/goals/delete-jsmith-bodyweight-demo', async function (req, res) {
+    try {
+        const query1 = 'CALL sp_delete_jsmith_bodyweight_goal();';
+        await db.query(query1);
+        res.redirect('/goals');
+    } catch (error) {
+        console.error('Error executing PL/SQL:', error);
+        res.status(500).send('An error occurred while executing the PL/SQL.');
+    }
+});
+
 // RESET ROUTE
 
 app.get('/reset', async function (req, res) {
