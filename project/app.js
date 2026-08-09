@@ -1,6 +1,12 @@
 /*
     Module is adapted from:
     Exploration - Web Application Technology Node.js starter code
+
+ * Citation for /workout-exercises-create, -update, -delete routes:
+ * Date: 2026-08-09
+ * Written by the authors and reviewed with Claude (Anthropic), which
+ * corrected the CALL argument order and empty-string-to-NULL handling.
+ * Prompt topic: wiring the WorkoutExercises forms to stored procedures.
 */
 
 // ######## SETUP ########
