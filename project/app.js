@@ -156,6 +156,7 @@ app.get('/goals', async function (req, res) {
 
 // PL/SQL DEMO ROUTE
 
+/*
 app.get('/goals/delete-jsmith-bodyweight-demo', async function (req, res) {
     try {
         const query1 = 'CALL sp_delete_jsmith_bodyweight_goal();';
@@ -166,7 +167,7 @@ app.get('/goals/delete-jsmith-bodyweight-demo', async function (req, res) {
         res.status(500).send('An error occurred while executing the PL/SQL.');
     }
 });
-
+*/
 // RESET ROUTE
 
 app.get('/reset', async function (req, res) {
@@ -176,6 +177,93 @@ app.get('/reset', async function (req, res) {
     } catch(error){
         console.error('Error on reset:', error);
         res.status(500).send('An error occurred while resetting the database.');
+    }
+})
+
+// creating workoutexercises route
+app.post('/workout-exercises-create', async function (req, res) {
+    try {
+        const {
+            create_workoutExercise_workoutID,
+            create_workoutExercise_exerciseID,
+            create_workoutExercise_repCount,
+            create_workoutExercise_weight,
+            create_workoutExercise_durationSeconds
+        }   = req.body;
+
+        // check if these should be null
+        const reps = create_workoutExercise_repCount === '' ? null : create_workoutExercise_repCount;
+        const weight = create_workoutExercise_weight     === '' ? null : create_workoutExercise_weight;
+        const dur = create_workoutExercise_durationSeconds === '' ? null : create_workoutExercise_durationSeconds;
+
+        await db.query(
+            // pass params
+            'CALL sp_create_workoutexercise(?, ?, ?, ?, ?);',
+            [
+                create_workoutExercise_workoutID,
+                create_workoutExercise_exerciseID,
+                reps,
+                weight,
+                dur
+            ]
+        );  // redirect to workoutexercises
+        res.redirect('/workout-exercises');
+    } catch(error){
+        console.error('Error on create:', error);
+        res.status(500).send('An error occurred while creating the workoutexercise.');
+    }
+})
+
+// delete workout exercises
+
+app.post('/workout-exercises-delete', async function (req, res) {
+    try {
+        await db.query(
+            'CALL sp_delete_workoutexercise(?);',
+            [
+                req.body.delete_workoutExercise_id
+            ]
+        );
+        res.redirect('/workout-exercises');
+    } catch (error) {
+        console.error('Error on delete:', error);
+        res.status(500).send('An error occurred while deleting the workoutexercise.');
+    }
+});
+
+// updating workoutexercises route
+app.post('/workout-exercises-update', async function (req, res) {
+    try {
+        const {
+            update_workoutExercise_id,
+            update_workoutExercise_workoutID,
+            update_workoutExercise_exerciseID,
+            update_workoutExercise_repCount,
+            update_workoutExercise_weight,
+            update_workoutExercise_durationSeconds
+        }   = req.body;
+
+        // check if these should be null
+        const reps = update_workoutExercise_repCount === '' ? null : update_workoutExercise_repCount;
+        const weight = update_workoutExercise_weight     === '' ? null : update_workoutExercise_weight;
+        const dur = update_workoutExercise_durationSeconds === '' ? null : update_workoutExercise_durationSeconds;
+
+        await db.query(
+            // pass params
+            'CALL sp_update_workoutexercise(?, ?, ?, ?, ?, ?);',
+            [
+                update_workoutExercise_id,
+                update_workoutExercise_workoutID,
+                update_workoutExercise_exerciseID,
+                reps,
+                weight,
+                dur
+            ]
+        );  // redirect to workoutexercises
+        res.redirect('/workout-exercises');
+    } catch(error){
+        console.error('Error on update:', error);
+        res.status(500).send('An error occurred while updating the workoutexercise.');
     }
 })
 
