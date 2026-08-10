@@ -58,3 +58,10 @@ Use this only when you're ready to submit for grading or peer review, since the 
 ### Acknowledgements
 
 Portions of this document was generated using the OpenAI Codex coding assistant within VS Code. Prompt used: "Create a README.md file with instructions on how to run development and production."
+
+ * Citation for /workout-exercises-create, -update, -delete routes:
+ * Date: 2026-08-09
+ * Written by the authors and reviewed with Claude (Anthropic), which
+ * corrected the CALL argument order and empty-string-to-NULL handling.
+ * Prompt topic: wiring the WorkoutExercises forms to stored procedures.
+ 

@@ -10,6 +10,9 @@
 -- is gone.
 -- ---------------------------------------------------------
 
+/*
+-- retired demo proc
+
 DROP PROCEDURE IF EXISTS sp_delete_jsmith_bodyweight_goal;
 
 DELIMITER //
@@ -21,6 +24,9 @@ BEGIN
       AND Goals.goalType = 'Bodyweight';
 END //
 DELIMITER ;
+*/
+-- -----------------------------------
+
 -- ---------------------------------------------------------
 -- WORKOUT EXERCISES
 -- ---------------------------------------------------------
@@ -86,5 +92,53 @@ BEGIN
   UPDATE WorkoutExercises
   SET workoutID = p_workoutID, exerciseID = p_exerciseID, repCount = p_repCount, weight = p_weight, durationSeconds = p_durationSeconds
   WHERE workoutExerciseID = p_workoutExerciseID;
+END //
+DELIMITER ;
+
+-- ---------------------------------------------------------
+-- WORKOUTS
+-- ---------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS sp_create_workout;
+
+DELIMITER //
+CREATE PROCEDURE sp_create_workout(
+  -- psuedonames
+  IN p_userID INT,
+  IN p_workoutDate DATE,
+  IN p_notes VARCHAR(255)
+)
+BEGIN
+  -- insert a new workout
+  INSERT INTO Workouts(userID, workoutDate, notes)
+  VALUES (
+    p_userID,
+    p_workoutDate,
+    p_notes
+  );
+END //
+DELIMITER ;
+
+-- ---------------------------------------------------------
+-- EXERCISES
+-- ---------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS sp_create_exercise;
+
+DELIMITER //
+CREATE PROCEDURE sp_create_exercise(
+  -- psuedonames
+  IN p_name VARCHAR(255),
+  IN p_muscleGroup VARCHAR(255),
+  IN p_equipment VARCHAR(255)
+)
+BEGIN
+  -- insert a new exercise
+  INSERT INTO Exercises(name, muscleGroup, equipment)
+  VALUES (
+    p_name,
+    p_muscleGroup,
+    p_equipment
+  );
 END //
 DELIMITER ;

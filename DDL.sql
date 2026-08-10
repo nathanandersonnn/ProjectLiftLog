@@ -86,7 +86,8 @@ BEGIN
     INSERT INTO Users (email, username, password)
     VALUES
         ('jdoe@example.com', 'jdoe', 'hashed_pw_1'),
-        ('jsmith@example.com', 'jsmith', 'hashed_pw_2');
+        ('jsmith@example.com', 'jsmith', 'hashed_pw_2'),
+        ('ella@fake.com', 'ella', 'hashed_pw_3');
 
     INSERT INTO Exercises (name, muscleGroup, equipment)
     VALUES
@@ -121,7 +122,9 @@ BEGIN
         (SELECT exerciseID FROM Exercises WHERE name = 'Bench Press'),
         '1 rep max', 225.00, '2026-01-01', NULL),
         ((SELECT userID FROM Users WHERE username = 'jsmith'),
-        NULL, 'Bodyweight', 180.00, '2026-05-01', NULL);
+        NULL, 'Bodyweight', 180.00, '2026-05-01', NULL),
+        ((SELECT userID FROM Users WHERE username = 'ella'),
+        NULL, 'Bodyweight', 120.00, '2026-05-11', NULL);
 
     SET FOREIGN_KEY_CHECKS=1;
 END //
