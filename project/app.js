@@ -273,6 +273,65 @@ app.post('/workout-exercises-update', async function (req, res) {
     }
 })
 
+// create a workout 
+
+app.post('/workouts-create', async function (req, res) {
+    try {
+        const {
+            create_workout_userID,
+            create_workout_workoutDate,
+            create_workout_notes
+        }   = req.body;
+
+        // check if this should be null
+        const notes = create_workout_notes === '' ? null : create_workout_notes;
+
+        await db.query(
+            // pass params
+            'CALL sp_create_workout(?, ?, ?);',
+            [
+                create_workout_userID,
+                create_workout_workoutDate,
+                notes
+            ]
+        );  // redirect to workouts
+        res.redirect('/workouts');
+    } catch(error){
+        console.error('Error on create:', error);
+        res.status(500).send('An error occurred while creating the workout.');
+    }
+})
+
+// create a exercise
+
+app.post('/exercises-create', async function (req, res) {
+    try {
+        const {
+            create_exercise_name,
+            create_exercise_muscleGroup,
+            create_exercise_equipment
+        }   = req.body;
+
+        // check if this should be null
+        const muscle = create_exercise_muscleGroup === '' ? null : create_exercise_muscleGroup;
+        const equipment = create_exercise_equipment === '' ? null : create_exercise_equipment;
+
+        await db.query(
+            // pass params
+            'CALL sp_create_exercise(?, ?, ?);',
+            [
+                create_exercise_name,
+                muscle,
+                equipment
+            ]
+        );  // redirect to exercises
+        res.redirect('/exercises');
+    } catch(error){
+        console.error('Error on create:', error);
+        res.status(500).send('An error occurred while creating the exercise.');
+    }
+})
+
 // ######## LISTENER ########
 
 app.listen(PORT, function () {
