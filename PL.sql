@@ -142,3 +142,33 @@ BEGIN
   );
 END //
 DELIMITER ;
+
+-- ---------------------------------------------------------
+-- GOALS
+-- ---------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS sp_create_goal;
+
+DELIMITER //
+CREATE PROCEDURE sp_create_goal(
+  -- psuedonames
+  IN p_userID INT,
+  IN p_exerciseID INT,
+  IN p_goalType varchar(255),
+  IN p_targetValue DECIMAL(6,2),
+  IN p_createdDate DATE,
+  IN p_completedDate DATE
+)
+BEGIN
+  -- insert a new goal
+  INSERT INTO Goals(userID, exerciseID, goalType, targetValue, createdDate, completedDate)
+  VALUES (
+    p_userID,
+    p_exerciseID,
+    p_goalType,
+    p_targetValue,
+    p_createdDate,
+    p_completedDate
+  );
+END //
+DELIMITER ;

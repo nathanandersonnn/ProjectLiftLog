@@ -332,6 +332,42 @@ app.post('/exercises-create', async function (req, res) {
     }
 })
 
+// create a goal
+
+app.post('/goals-create', async function (req, res) {
+    try {
+        const {
+            create_goal_userID,
+            create_goal_exerciseID,
+            create_goal_goalType,
+            create_goal_targetValue,
+            create_goal_createdDate,
+            create_goal_completedDate
+        } = req.body;
+
+        // check if these should be null
+        const exerciseID    = create_goal_exerciseID    === '' ? null : create_goal_exerciseID;
+        const targetValue   = create_goal_targetValue   === '' ? null : create_goal_targetValue;
+        const completedDate = create_goal_completedDate === '' ? null : create_goal_completedDate;
+
+        await db.query(
+            'CALL sp_create_goal(?, ?, ?, ?, ?, ?);',
+            [
+                create_goal_userID,
+                exerciseID,
+                create_goal_goalType,
+                targetValue,
+                create_goal_createdDate,
+                completedDate
+            ]
+        );
+        res.redirect('/goals');
+    } catch (error) {
+        console.error('Error on create:', error);
+        res.status(500).send('An error occurred while creating the goal.');
+    }
+});
+
 // ######## LISTENER ########
 
 app.listen(PORT, function () {

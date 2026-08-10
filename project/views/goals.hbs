@@ -30,16 +30,6 @@
             <td>{{this.createdDate}}</td>
             <td>{{this.completedDate}}</td>
             <td>{{this.name}}</td>
-
-            {{! DELETE form }}
-            <form id='delete_goal_form'>
-                <input type='hidden' name='delete_goal_id' value='{{this.goalID}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
-            </form>
         </tr>
         {{/each}}
     </tbody>
@@ -47,7 +37,7 @@
 
 {{! CREATE form }}
 <h2>Create a Goal</h2>
-<form class='cuForm' id='create_goal_form'>
+<form class='cuForm' id='create_goal_form' method='POST' action='/goals-create'>
     <label for='create_goal_userID'>User: </label>
     <select name='create_goal_userID' id='create_goal_userID' required>
         <option value='' disabled selected>Select a User</option>
@@ -57,67 +47,25 @@
     </select>
 
     <label for='create_goal_type'>Goal Type: </label>
-    <input type='text' name='create_goal_type' id='create_goal_type' required />
+    <input type='text' name='create_goal_goalType' id='create_goal_goalType' required />
 
     <label for='create_goal_targetValue'>Target Value: </label>
     <input type='number' step='0.01' name='create_goal_targetValue' id='create_goal_targetValue' min='0' />
 
     <label for='create_goal_exerciseID'>Exercise (optional): </label>
     <select name='create_goal_exerciseID' id='create_goal_exerciseID'>
-        <option value='NULL' selected>&lt; None &gt;</option>
+        <option value='' selected>&lt; None &gt;</option>
         {{#each exercises}}
         <option value='{{this.exerciseID}}'>{{this.name}}</option>
         {{/each}}
     </select>
 
     <label for='create_goal_createdDate'>Created Date: </label>
-    <input type='datetime-local' name='create_goal_createdDate' id='create_goal_createdDate' required />
+    <input type='date' name='create_goal_createdDate' id='create_goal_createdDate' required />
 
+    <label for='create_goal_completedDate'>Completed Date (optional): </label>
+    <input type='date' name='create_goal_completedDate' id='create_goal_completedDate' />
+    
     <input type='submit' />
 </form>
 
-{{! UPDATE form }}
-<h2>Update a Goal</h2>
-<form class='cuForm' id='update_goal_form'>
-    <label for='update_goal_id'>Goal to Update: </label>
-    <select name='update_goal_id' id='update_goal_id' required>
-        <option value='' disabled selected>Select a Goal</option>
-        {{#each goals}}
-        <option value='{{this.goalID}}'>
-            {{this.goalID}}
-            -
-            {{this.goalType}}
-        </option>
-        {{/each}}
-    </select>
-
-    <label for='update_goal_userID'>User: </label>
-    <select name='update_goal_userID' id='update_goal_userID'>
-        <option value='' disabled selected>Select a User</option>
-        {{#each users}}
-        <option value='{{this.userID}}'>{{this.username}}</option>
-        {{/each}}
-    </select>
-
-    <label for='update_goal_type'>Goal Type: </label>
-    <input type='text' name='update_goal_type' id='update_goal_type' />
-
-    <label for='update_goal_targetValue'>Target Value: </label>
-    <input type='number' step='0.01' name='update_goal_targetValue' id='update_goal_targetValue' min='0' />
-
-    <label for='update_goal_exerciseID'>Exercise (optional): </label>
-    <select name='update_goal_exerciseID' id='update_goal_exerciseID'>
-        <option value='NULL'>&lt; None &gt;</option>
-        {{#each exercises}}
-        <option value='{{this.exerciseID}}'>{{this.name}}</option>
-        {{/each}}
-    </select>
-
-    <label for='update_goal_createdDate'>Created Date: </label>
-    <input type='datetime-local' name='update_goal_createdDate' id='update_goal_createdDate' />
-
-    <label for='update_goal_completedDate'>Completed Date: </label>
-    <input type='datetime-local' name='update_goal_completedDate' id='update_goal_completedDate' />
-
-    <input type='submit' />
-</form>
