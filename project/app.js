@@ -368,6 +368,31 @@ app.post('/goals-create', async function (req, res) {
     }
 });
 
+// create a user
+
+app.post('/users-create', async function (req, res) {
+    try {
+        const {
+            create_user_email,
+            create_user_username,
+            create_user_password
+        } = req.body;
+
+        await db.query(
+            'CALL sp_create_user(?, ?, ?);',
+            [
+                create_user_email,
+                create_user_username,
+                create_user_password
+            ]
+        );
+        res.redirect('/users');
+    } catch (error) {
+        console.error('Error on create:', error);
+        res.status(500).send('An error occurred while creating the user.');
+    }
+});
+
 // ######## LISTENER ########
 
 app.listen(PORT, function () {

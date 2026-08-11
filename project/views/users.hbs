@@ -21,17 +21,6 @@
             <td>{{this.userID}}</td>
             <td>{{this.email}}</td>
             <td>{{this.username}}</td>
-
-            {{! DELETE form }}
-            <form id='delete_user_form'>
-                <input type='hidden' name='delete_user_id' value='{{this.userID}}' />
-                <input type='hidden' name='delete_user_name' value='{{this.username}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
-            </form>
         </tr>
         {{/each}}
     </tbody>
@@ -39,7 +28,7 @@
 
 {{! CREATE form }}
 <h2>Create a User</h2>
-<form class='cuForm' id='create_user_form'>
+<form class='cuForm' id='create_user_form' method='POST' action='/users-create'>
     <label for='create_user_email'>Email: </label>
     <input type='email' name='create_user_email' id='create_user_email' required />
 
@@ -48,33 +37,6 @@
 
     <label for='create_user_password'>Password: </label>
     <input type='password' name='create_user_password' id='create_user_password' required />
-
-    <input type='submit' />
-</form>
-
-{{! UPDATE form }}
-<h2>Update a User</h2>
-<form class='cuForm' id='update_user_form'>
-    <label for='update_user_id'>User to Update: </label>
-    <select name='update_user_id' id='update_user_id' required>
-        <option value='' disabled selected>Select a User</option>
-        {{#each users}}
-        <option value='{{this.userID}}'>
-            {{this.userID}}
-            -
-            {{this.username}}
-        </option>
-        {{/each}}
-    </select>
-
-    <label for='update_user_email'>Email: </label>
-    <input type='email' name='update_user_email' id='update_user_email' />
-
-    <label for='update_user_username'>Username: </label>
-    <input type='text' name='update_user_username' id='update_user_username' />
-
-    <label for='update_user_password'>Password: </label>
-    <input type='password' name='update_user_password' id='update_user_password' />
 
     <input type='submit' />
 </form>
