@@ -2,10 +2,13 @@
     Module is adapted from:
     Exploration - Web Application Technology Node.js starter code
 --}}
-<h1>Users</h1>
+<div class="page-header">
+    <h1>Users</h1>
+    <p>Manage the users using Lift Log.</p>
+</div>
 
 {{! READ table }}
-<table>
+<div class="table-card"><table>
     <thead>
         <tr>
             <th>userID</th>
@@ -24,19 +27,23 @@
         </tr>
         {{/each}}
     </tbody>
-</table>
+</table></div>
 
 {{! CREATE form }}
 <h2>Create a User</h2>
-<form class='cuForm' id='create_user_form' method='POST' action='/users-create'>
+<div class="form-card"><form class='cuForm' id='create_user_form' method='POST' action='/users-create'>
+    <div class="field">
     <label for='create_user_email'>Email: </label>
     <input type='email' name='create_user_email' id='create_user_email' required />
+    </div><div class="field">
 
     <label for='create_user_username'>Username: </label>
     <input type='text' name='create_user_username' id='create_user_username' required />
+    </div><div class="field">
 
     <label for='create_user_password'>Password: </label>
     <input type='password' name='create_user_password' id='create_user_password' required />
+    </div>
 
     <input type='submit' />
-</form>
+</form></div>
