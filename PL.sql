@@ -172,3 +172,26 @@ BEGIN
   );
 END //
 DELIMITER ;
+
+-- ---------------------------------------------------------
+-- USERS
+-- ---------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS sp_create_user;
+
+DELIMITER //
+CREATE PROCEDURE sp_create_user(
+  IN p_email VARCHAR(255),
+  IN p_username VARCHAR(255),
+  IN p_password VARCHAR(255)
+)
+BEGIN
+  -- insert a new user
+  INSERT INTO Users(email, username, password)
+  VALUES (
+    p_email,
+    p_username,
+    p_password
+  );
+END //
+DELIMITER ;
