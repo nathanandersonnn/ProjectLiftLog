@@ -4,11 +4,6 @@
 -- CS340 Project Step 2/4
 -- ---------------------------------------------------------
 
-DROP PROCEDURE IF EXISTS sp_load_liftlog;
-
-DELIMITER //
-CREATE PROCEDURE sp_load_liftlog()
-BEGIN
     SET FOREIGN_KEY_CHECKS = 0;
 
     -- Drop all tables if they exist (Child before parent)
@@ -107,15 +102,14 @@ BEGIN
 
     INSERT INTO WorkoutExercises (workoutID, exerciseID, repCount, weight, durationSeconds)
     VALUES
-        (101, (SELECT exerciseID FROM Exercises WHERE name = 'Bench Press'),     10, 135.00, NULL),
-        (101, (SELECT exerciseID FROM Exercises WHERE name = 'Shoulder Press'),   8,  50.00, NULL),
-        (101, (SELECT exerciseID FROM Exercises WHERE name = 'Tricep Pushdown'), 12,  40.00, NULL),
-        (102, (SELECT exerciseID FROM Exercises WHERE name = 'Deadlift'),         5, 225.00, NULL),
-        (102, (SELECT exerciseID FROM Exercises WHERE name = 'Bicep Curl'),      10,  30.00, NULL),
-        (103, (SELECT exerciseID FROM Exercises WHERE name = 'Bench Press'),      8,  95.00, NULL),
-        (103, (SELECT exerciseID FROM Exercises WHERE name = 'Plank'),         NULL,   NULL,   60),
-        (103, (SELECT exerciseID FROM Exercises WHERE name = 'Lat Pulldown'),    10,  80.00, NULL);
-
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-01'), (SELECT exerciseID FROM Exercises WHERE name = 'Bench Press'),     10, 135.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-01'), (SELECT exerciseID FROM Exercises WHERE name = 'Shoulder Press'),   8,  50.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-01'), (SELECT exerciseID FROM Exercises WHERE name = 'Tricep Pushdown'), 12,  40.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-03'), (SELECT exerciseID FROM Exercises WHERE name = 'Deadlift'),         5, 225.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-03'), (SELECT exerciseID FROM Exercises WHERE name = 'Bicep Curl'),      10,  30.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-02'), (SELECT exerciseID FROM Exercises WHERE name = 'Bench Press'),      8,  95.00, NULL),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-02'), (SELECT exerciseID FROM Exercises WHERE name = 'Plank'),         NULL,   NULL,   60),
+        ((SELECT workoutID FROM Workouts WHERE workoutDate = '2026-07-02'), (SELECT exerciseID FROM Exercises WHERE name = 'Lat Pulldown'),    10,  80.00, NULL);
     INSERT INTO Goals (userID, exerciseID, goalType, targetValue, createdDate, completedDate)
     VALUES
         ((SELECT userID FROM Users WHERE username = 'jdoe'),
@@ -127,5 +121,3 @@ BEGIN
         NULL, 'Bodyweight', 120.00, '2026-05-11', NULL);
 
     SET FOREIGN_KEY_CHECKS=1;
-END //
-DELIMITER ;
